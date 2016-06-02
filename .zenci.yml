@@ -1,14 +1,25 @@
 deploy:
-  7.x-1.x:
-    server: ocean.vps-private.net
-    username: mv
-    dir: '{home}/github/drupal/{branch}'
-    env_vars:
-      docroot: '{home}/domains/test.mv.ocean.vps-private.net'
-      domain: 	test.mv.ocean.vps-private.net
-      sitename: testsite
-      sitemail: noreply@test.mv.ocean.vps-private.net
-      database_name: mv_test
-      database_user: mv_test
+  7.x-1.x: #branch name
+    server: ocean.vps-private.net #server address
+    username: mv # user on server
+    dir: '{home}/github/drupal/{branch}' #dir for git checkout
+    env_vars: # set up env variables that we can use in scripts later
+      docroot: '{home}/domains/test.mv.ocean.vps-private.net' # www root dir
+      domain: 	test.mv.ocean.vps-private.net # domain name
+      sitename: testsite #site name
+      sitemail: noreply@test.mv.ocean.vps-private.net #site email
+      database_name: mv_test # DB name
+      database_user: mv_test # DB user
     scripts:
-      init: '{deploy_dir}/scripts/install.sh'
+      init: '{deploy_dir}/scripts/install.sh' # install script
+test:
+  env_vars:
+      docroot: '{home}/www/test'
+  php53:
+    branch:
+      box: 'backdrop-php53'
+      dir: '{home}/github/branch/{branch}'
+      scripts:
+        init: '{deploy_dir}/scripts/install_test.sh'
+      tests:
+        - '{deploy_dir}/scripts/run_tests.sh'
