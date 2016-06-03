@@ -1,11 +1,11 @@
 #!/bin/sh
 
-echo "Installing drupal to " . $DOCROOT
+echo "Installing drupal to " $DOCROOT
 
-DATABASE_PASS="test"
 cd $DOCROOT
 ls -lah
 drush dl drupal-7 --drupal-project-rename=drupal
+echo $DOCROOT
 mv drupal/* $DOCROOT
 mv drupal/.htaccess $DOCROOT
 rm -rf drupal
