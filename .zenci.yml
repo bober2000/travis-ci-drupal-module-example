@@ -13,10 +13,10 @@ deploy:
     scripts:
       init: '{deploy_dir}/scripts/install.sh' # install script
 test:
-  env_vars:
-      docroot: '{home}/www/test'
   php53:
     branch:
+      env_vars:
+        docroot: '{home}/www/test'
       box: 'backdrop-php53'
       dir: '{home}/github/branch/{branch}'
       scripts:
